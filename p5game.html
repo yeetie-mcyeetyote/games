@@ -1,0 +1,68 @@
+<html>
+  
+  <head>
+    <script src="p5.min.js"></script>
+    <style>
+      body {
+        overflow:hidden;
+        margin:0;
+        padding:0;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var posX = w/2;
+    var posY = h/2;
+    var lazy = 10;
+    function setup() {
+      createCanvas(w, h);
+    }
+    function draw() {
+      background(255);
+      fill(color('#3366cc'));//player color
+      strokeWeight(0);
+      rect(posX,posY,50,50,200);//pos and shape of player
+     
+      
+      function ball(){
+      background(255);
+      fill(color('#800000'));//player color
+      strokeWeight(0);
+      rect(100,100,50,50,200);//pos and shape of player
+      //w
+      if ((keyIsDown(73)) && (posY > 0)){
+        posY -=lazy;
+        
+      }
+      //s
+      if ((keyIsDown(74)) && (posY < h-100)){
+        posY +=lazy;
+        
+      }
+      //a
+      if ((keyIsDown(75)) && (posX > 0)){
+        posX -=lazy;
+        
+      }
+      //d
+      if ((keyIsDown(76)) && (posX < w-100)){
+        posX +=lazy;
+        
+      }
+    }
+    
+    }
+    
+    
+    
+    
+    
+    
+    </script>
+    
+  </body>
+</html>
