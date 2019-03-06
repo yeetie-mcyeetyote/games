@@ -1,0 +1,142 @@
+<html>
+
+<head>
+  <script src="p5.min.js"></script>
+  <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var ball = new ball(); //im am create new object globally
+    var enemy = new enemy();
+    var stationary = new stationary();
+    var d;
+
+    function setup() {
+      createCanvas(w, h);
+    }
+
+    function draw() {
+      background(0);
+      ball.show();
+      ball.move();
+      enemy.show();
+      enemy.move();
+      enemy.kill();
+      stationary.show();
+      stationary.kill();
+    }
+      function ball() {
+        this.x = w/2;
+        this.y = w/5;
+        this.show = function () {
+          this.x = random(w);
+          this.y = random(h);
+          fill(color('red'));
+          ellipse(this.x, this.y, 101, 101);
+        }
+
+        this.move = function () {
+          //w
+      if ((keyIsDown(87)) && (this.y > 0)){
+        this.y -=10;
+        
+      }
+      //s
+      if ((keyIsDown(83)) && (this.y < h-100)){
+        this.y +=10;
+        
+      }
+      //a
+      if ((keyIsDown(65)) && (this.x > 0)){
+        this.x -=10;
+        
+      }
+      //d
+      if ((keyIsDown(68)) && (this.x < w-100)){
+        this.x +=10;
+        
+      }
+        }
+      
+
+      }
+
+
+      function enemy() {
+        this.x = w;
+        this.y = h;
+        this.show = function () {
+          this.x = random(w);
+        this.y = random(h);
+          fill(color('blue'));
+          ellipse(this.x, this.y, 101, 101);
+        }
+
+        this.move = function () {
+           //i
+      if ((keyIsDown(73)) && (this.y > 0)){
+        this.y -=10;
+        
+      }
+      //k
+      if ((keyIsDown(75)) && (this.y < h-100)){
+        this.y +=10;
+        
+      }
+      //
+      if ((keyIsDown(74)) && (this.x > 0)){
+        this.x -=10;
+        
+      }
+      //l
+      if ((keyIsDown(76)) && (this.x < w-100)){
+        this.x +=10;
+        
+      }
+        }
+      
+         this.kill = function() {
+        d = dist(this.x,this.y,ball.x,ball.y);
+        if (d < 90) {
+          noLoop();
+          window.alert("you lose");
+        }
+      }
+       
+      }
+      
+      
+      function stationary() {
+       this.x = w/2;
+       this.y = h/2;
+        this.show = function () {
+         
+          fill(color('green'));
+          ellipse(this.x, this.y, 101, 101);
+        }
+
+        
+         this.kill = function() {
+        d = dist(this.x,this.y,ball.x,ball.y);
+        if (d < 90) {
+          noLoop();
+          window.alert("you lose");
+        }
+      }
+       
+      }
+      
+  </script>
+
+</body>
+
+</html>
